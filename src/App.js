@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route, Link } from 'react-router-dom';
 import './App.css';
+import Landing from './components/Landing';
+import Library from './components/Library';
+import Album from './components/Album';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+        <header>
+          <nav>
+            <Link to='/'>Landing</Link>
+            <Link to="/library">Library</Link>
+          </nav>
+          <h1>Music Player</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <main>
+          <Route exact path="/" component={Landing} />
+          <Route path="/library" component={Library} />
+          <Route path="/album" component={Album} />
+        </main>
+        <footer id="freepik">
+          <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+        </footer>
       </div>
     );
   }
