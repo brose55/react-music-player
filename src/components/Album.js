@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
+import PlayerBar from './PlayerBar';
 import '../style/Album.css';
 
 // Todo add play and pause ionicons
@@ -45,18 +46,34 @@ class Album extends Component {
     }
   }
 
+  handlePrevClick() {
+    const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+    const newIndex = Math.max(0, currentIndex - 1);
+    const newSong = this.state.album.songs[newIndex];
+    this.setSong(newSong);
+    this.play(newSong);
+  }
+
+  handleNextClick() {
+    const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+    const newIndex = Math.min(currentIndex + 1, this.state.album.songs.length - 1);
+    const newSong = this.state.album.songs[newIndex];
+    this.setSong(newSong);
+    this.play(newSong);
+  }
+
   render() {
-    const { album } = this.state;
+    const { albumCover, title, artist, releaseInfo, songs } = this.state.album;
 
     return (
       <div className="album">
         <div id="album-info">
-          <img id="album-cover-art" src={album.albumCover} alt=
+          <img id="album-cover-art" src={albumCover} alt=
           '' />
           <div className="album-details">
-            <h1 id="album-title">{album.title}</h1>
-            <h2 className="artist">{album.artist}</h2>
-            <div id="release-info">{album.releaseInfo}</div>
+            <h1 id="album-title">{title}</h1>
+            <h2 className="artist">{artist}</h2>
+            <div id="release-info">{releaseInfo}</div>
           </div>
         </div>
         <table id="song-list">
@@ -67,8 +84,8 @@ class Album extends Component {
           </colgroup>
           <tbody>
             {
-              album.songs.map( (song, i) =>
-                <tr className="song" key={album.title + song + i} onClick={() => this.handleSongClick(song)}>
+              songs.map( (song, i) =>
+                <tr className="song" key={title + song + i} onClick={() => this.handleSongClick(song)}>
 
                   <td className="song-actions">
                     <button>
@@ -83,6 +100,13 @@ class Album extends Component {
             }
           </tbody>
         </table>
+        <PlayerBar
+          isPlaying={this.state.isPlaying}
+          currentSong={this.state.currentSong}
+          handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+          handlePrevClick = {() => this.handlePrevClick()}
+          handleNextClick = {() => this.handleNextClick()}
+        />
       </div>
     )
   }
