@@ -11,7 +11,6 @@ class Library extends Component {
     };
   }
 
-
   render() {
     const { albums } = this.state;
     return (
