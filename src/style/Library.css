@@ -1,4 +1,17 @@
-.album-cover {
-  height: 125px;
-  width:  125px;
+.library {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 2vw;
+}
+
+.album-description {
+	font-size: 1.6vw;
+	text-align: center;
+	padding: 3% 15%;
+}
+
+.album-thumbnail {
+  height: auto;
+  width:  100%;
+  box-shadow: 5px 5px 5px black;
 }

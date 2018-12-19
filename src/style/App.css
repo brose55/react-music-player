@@ -1,33 +1,82 @@
-.App {
-  text-align: center;
+main {
+	margin: 1% 10% 5% 10%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.app-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-right: 2vw;
+	padding-left: 1vw;
+	font-family: 'Shadows Into Light', cursive;
+	color: #e33984;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.hero-title {
+	animation: shake 1.5s;
+	animation-iteration-count: 2;
 }
 
-.App-title {
-  font-size: 1.5em;
+.hero-title:hover {
+  animation: shake infinite .5s;
 }
 
-.App-intro {
-  font-size: large;
+.logo {
+	width: 10vw;
+	height: auto;
+	animation: App-logo-pulse 1s;
+	animation-iteration-count: 3;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.logo:hover {
+  animation: App-logo-pulse infinite .75s;
 }
 
-#freepik {
-  font-size: 8px;
-  padding-top: 20px;
+nav {
+	display: flex;
+	flex-direction: column;
+	font-size: 2vw;
+}
+
+a {
+	color: #e33984;
+	transition: transform .2s;
+}
+
+a:visited {
+	color: #42eef4;
+}
+
+nav a:hover {
+  transform: scale(1.5);
+}
+
+h1 {
+	font-size: 3.5vw;
+}
+
+
+@keyframes App-logo-pulse {
+  0% { transform: scale(1); }
+	30% { transform: scale(1); }
+	40% { transform: scale(1.08); }
+	50% { transform: scale(1); }
+	60% { transform: scale(1); }
+	70% { transform: scale(1.05); }
+	80% { transform: scale(1); }
+	100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
 }

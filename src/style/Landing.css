@@ -1,0 +1,43 @@
+.landing {
+	background-image: url('./mic1.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.selling-points {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+}
+
+.point {
+	text-align: center;
+	margin: 5%;
+}
+
+.point-title {
+	margin-bottom: 1vh;
+	font-size: 3vw;
+}
+
+.point-description {
+	padding-left: 20%;
+	padding-right: 20%;
+	font-size: 2vw;
+}
+
+.point-icon {
+	font-size: 10vw;
+	justify-self: center;
+	align-self: center;
+	padding-top: 5vh;
+}
+
+.selling-points a {
+	color: #e33984;
+	animation: App-logo-pulse 1s;
+	animation-iteration-count: 3;
+}
+
+.selling-points a:hover {
+  animation: App-logo-pulse infinite 1s;
+}

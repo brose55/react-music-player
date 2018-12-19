@@ -14,15 +14,17 @@ class Library extends Component {
   render() {
     const { albums } = this.state;
     return (
-      <div className="Library">
+      <div className="library">
       {
         albums.map( (album, i) =>
-          <Link to={`/album/${album.slug}`} key={album.title + i}>
-            <img className="album-cover" src={album.albumCover} alt={album.title} />
-            <div>{album.title}</div>
-            <div>{album.artist}</div>
-            <div>{album.songs.length} songs</div>
-          </Link>
+				<Link to={`/album/${album.slug}`} key={album.title + i}>
+					<img className="album-thumbnail" src={album.albumCover} alt={album.title} />
+					<div className="album-description">
+						<p>{album.artist} -</p>
+						<p>{album.title}</p>
+						<p>{album.songs.length} songs</p>
+					</div>
+				</Link>
         )
       }
       </div>

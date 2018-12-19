@@ -3,9 +3,6 @@ import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
 import '../style/Album.css';
 
-// Todo add play and pause ionicons
-// look up their guide
-
 class Album extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +14,8 @@ class Album extends Component {
         currentTime: 0,
         duration: album.songs[0].duration,
         volume: false,
-        isPlaying: false
+        isPlaying: false,
+				isHovered: false
     }
 
     this.audioElement = document.createElement('audio');
@@ -107,15 +105,6 @@ class Album extends Component {
 
     return (
       <div className="album">
-        <div id="album-info">
-          <img id="album-cover-art" src={albumCover} alt=
-          '' />
-          <div className="album-details">
-            <h1 id="album-title">{title}</h1>
-            <h2 className="artist">{artist}</h2>
-            <div id="release-info">{releaseInfo}</div>
-          </div>
-        </div>
         <table id="song-list">
           <colgroup>
             <col id="song-number-column" />
@@ -125,22 +114,38 @@ class Album extends Component {
           <tbody>
             {
               songs.map( (song, i) =>
-                <tr className="song" key={title + song + i} onClick={() => this.handleSongClick(song)}>
-
-                  <td className="song-actions">
-                    <button>
-                      <span>{i + 1}</span>
-                      <ion-icon name="play"></ion-icon>
-                      <ion-icon name="pause"></ion-icon>
-                    </button>
-                  </td>
+                <tr className="song"
+										key={title + song + i}
+										onClick={() => this.handleSongClick(song)}
+										onMouseEnter={() => this.setState({isHovered: i + 1})}
+	                  onMouseLeave={() => this.setState({isHovered: false})}>
+	                  <td className="song-actions">
+	                    <button>
+	                      {
+	                        (this.state.currentSong.title === song.title) ?
+	                        <ion-icon name={this.state.isPlaying ? "pause" : "play"}></ion-icon> :
+	                        (this.state.isHovered === i + 1) ?
+	                        <ion-icon name="play"></ion-icon> :
+	                        <span className="song-number">{i + 1}</span>
+	                      }
+	                    </button>
+	                  </td>
                   <td>{song.title}</td>
-                  <td>{song.duration}</td>
+                  <td>{this.formatTime(song.duration)}</td>
                 </tr>)
             }
           </tbody>
         </table>
+				<div id="album-info">
+					<img id="album-cover-art" src={albumCover} alt='cover art' />
+					<div className="album-details">
+						<h2 className="artist">{artist} - </h2>
+						<h2 id="album-title">{title}</h2>
+						<div id="release-info">{releaseInfo}</div>
+					</div>
+				</div>
         <PlayerBar
+					className="pb"
           isPlaying={this.state.isPlaying}
           currentSong={this.state.currentSong}
           currentTime={this.state.currentTime}
